@@ -28,14 +28,11 @@ public class ImageController {
 	private StorageService storageService;
 	
 	@RequestMapping(value = "/doUpload", method = RequestMethod.POST, consumes =  {"multipart/form-data"})
-	public String upload(@RequestParam("file") MultipartFile file) {
-
-        storageService.uploadFile(file);
-
-        return "done";
-       // return "redirect:/success.html";
+	public String upload(@RequestParam MultipartFile file) {
+       return storageService.uploadFile(file);
     }
 	
+	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "/get/{id}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
     public ResponseEntity<InputStreamResource> getImage(@PathVariable String id) throws IOException {
 
